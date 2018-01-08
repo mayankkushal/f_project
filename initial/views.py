@@ -7,9 +7,10 @@ from .forms import BasicForm
 class BasicView(FormView):
 	form_class = BasicForm
 	template_name = "initial/form.html"
+	success_url = "/"
 
-	def post(self, request, *args, **kwargs):
-		"""
-		Other data processing goes here
-		"""
-		pass
+	def form_valid(self, form):
+		form.save()
+		return super(BasicView, self).form_valid(form)
+
+
